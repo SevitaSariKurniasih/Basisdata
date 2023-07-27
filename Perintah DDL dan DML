@@ -1,0 +1,259 @@
+$ mysql -u sevita -p
+Enter password:
+ERROR 1045 (28000): Access denied for user 'sevita'@'localhost' (using password: NO)
+~ $ 123
+No command 123 found, did you mean:
+ Command a2x in package asciidoc
+ Command i3 in package i3 from the x11-repo repository
+ Command i3 in package i3-gaps from the x11-repo repository
+ Command h3 in package libuber-h3
+ Command r2 in package radare2
+ Command x2x in package x2x from the x11-repo repository
+ Command z3 in package z3
+~ $
+~ $ mysql -u root
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 5
+Server version: 10.11.4-MariaDB MariaDB Server
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> create database db_databuku_sevita;
+Query OK, 1 row affected (0.010 sec)
+
+MariaDB [(none)]> use db_databuku_sevita;
+Database changed
+MariaDB [db_databuku_sevita]> create table tokobuku(
+    -> kode_buku varchar (20) not null,
+    -> nama_buku varchar (40) not null,
+    -> nomor_isbn integer (20) not null,
+    -> penerbit varchar (2p) not null,
+    -> tahun_terbit datr not null,
+    -> penulis ibteger (40) not null,
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '2p) not null,
+tahun_terbit datr not null,
+penulis ibteger (40) not null,' at line 5
+MariaDB [db_databuku_sevita]> [db_databuku_sevita]> create table tokobuku(
+    -> code_buku varchar (15) not null,
+    -> nama_buku varchar (25) not null,
+    -> nomor_isbn integer (15) not null,
+    -> penerbit varchar (10) not null,
+    -> tahun_terbit date not null,
+    -> penulis varchar (30) not null,
+    -> stok integer (29) not null,
+    -> PRIMARY KEY (code_buku)
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '[db_databuku_sevita]> create table tokobuku(
+code_buku varchar (15) not null,...' at line 1
+MariaDB [db_databuku_sevita]> create table tokobuku(
+    -> code_buku varchar (15) not null,
+    -> nama_buku varchar (25) not null,
+    -> nomor_isbn integer (15) not null,
+    -> penerbit varchar (10) not null,
+    -> tahun_terbit date not null,
+    -> penulis varchar (30) not null,
+    -> stok integer (29) not null,
+    -> PRIMARY KEY (code_buku(
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')' at line 10
+MariaDB [db_databuku_sevita]> create table tokobuku(
+    -> code_buku varchar (15) not null,                        -> nama_buku varchar (25) not null,                        -> nomor_isbn integer (15) not null,                       -> penerbit varchar (10) not null,                         -> tahun_terbit date not null,                             -> stok integer (29) not null,                             -> PRIMARY KEY (code_buku)                                 -> );                                                  Query OK, 0 rows affected (0.101 sec)
+MariaDB [db_databuku_sevita]> insert into tokobuku(code_buku,nama,nomor_isbn,penerbit,tahun_terbit,stok) values
+    -> ("B001","Goosebumps",97987654926,"Gramedia",2022,"R.L.Steine",100);
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+MariaDB [db_databuku_sevita]> insert into tokobuku(code_buku,nama,nomor_isbn,penerbit,tahun_terbit,stok) values           -> ("B001","Goosebumps",97987656,"Gramedia",2022-07-21-,"R.L.Steine",100),                                            -> ("B002","Basis Data",9798765492,"Gramedia",2022-07-22-,"Andi",100);                                            ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '"R.L.Steine",100),
+("B002","Basis Data",9798765492,"Gramedia",2022-07-22-,"An...' at line 2
+MariaDB [db_databuku_sevita]> insert into tokobuku(code_buku,nama,nomor_isbn,penerbit,tahun_terbit,stok) values           -> insert into tokobuku(code_buku,nama,nomor_isbn,penerbit,tahun_terbit,stok) values ("B001","Goosebumps",97987656,"Gramedia",2022-07-21-,"R.L.Steine",100), ("B002","Basis Data",979872,"Gramedia","2022-07-22"-,"Andi",100);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'insert into tokobuku(code_buku,nama,nomor_isbn,penerbit,tahun_terbit,stok) va...' at line 2
+MariaDB [db_databuku_sevita]> insert into tokobuku(code_buku,nama,nomor_isbn,penerbit,tahun_terbit,stok) values insert into tokobuku(code_buku,nama,nomor_isbn,penerbit,tahun_terbit,stok) values ("B001","Goosebumps",97986,"Gramedia","2022-07-2"1-,"R.L.Steine",100), ("B002","Basis Data",97972,"Gramedia","2022-07-22"-,"Andi",100);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'insert into tokobuku(code_buku,nama,nomor_isbn,penerbit,tahun_terbit,stok) va...' at line 1
+MariaDB [db_databuku_sevita]> insert into tokobuku(code_buku,nama,nomor_isbn,penerbit,tahun_terbit,stok) values ("B001","Goosebumps",97984,"Gramedia","2002-07-12","R.L.Steine",100);                                                       ERROR 1136 (21S01): Column count doesn't match value count at row 1
+MariaDB [db_databuku_sevita]> insert into tokobuku(code_buku,nama_buku,nomor_isbn,penerbit,tahun_terbit,stok) values ("B001","Goosebumps",97984,"Gramedia","2002-07-12","R.L.Ste ne",100);
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+MariaDB [db_databuku_sevita]> insert into tokobuku(code_buku,nama_buku,nomor_isbn,penerbit,tahun_terbit,penulis,stok) values ("B001","Goosebumps",97984,"Gramedia","2002-07-12","R.L.Steine",100);
+ERROR 1054 (42S22): Unknown column 'penulis' in 'field list'
+MariaDB [db_databuku_sevita]> insert into tokobuku(code_buku,nama_buku,nomor_isbn,penerbit,tahun_terbit,stok) values ("B001","goosebump",97984,"Gramedia","2002-07-12",100);     Query OK, 1 row affected (0.025 sec)
+
+MariaDB [db_databuku_sevita]> insert into tokobuku(code_buku,nama_buku,nomor_isbn,penerbit,tahun_terbit,stok) values ("B002","Basis Data",97987,"Gramedia","2005-07-12",100);
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [db_databuku_sevita]> select * from tokobuku;
++-----------+------------+------------+----------+--------------+------+
+| code_buku | nama_buku  | nomor_isbn | penerbit | tahun_terbit | stok |
++-----------+------------+------------+----------+--------------+------+
+| B001      | goosebump  |      97984 | Gramedia | 2002-07-12   |  100 |
+| B002      | Basis Data |      97987 | Gramedia | 2005-07-12   |  100 |
++-----------+------------+------------+----------+--------------+------+
+2 rows in set (0.009 sec)
+
+MariaDB [db_databuku_sevita]> create table Distributor(
+    -> id_distributor int (15) not null,
+    -> nama_distributor varchar (20) not null,
+    -> no_tlp int (20),
+    -> alamat varchar (40),
+    -> PRIMARY KEY (id_distributor)
+    -> );
+Query OK, 0 rows affected (0.022 sec)
+
+MariaDB [db_databuku_sevita]> select * from distributor;
+ERROR 1146 (42S02): Table 'db_databuku_sevita.distributor' doesn't exist
+MariaDB [db_databuku_sevita]> create table Distributor(                                                         -> id_distributor int primary key auto_increment,     -> nama_distributor varchar (20),                     -> no_tlp chat (20),                                  -> ;                                              ERROR 4161 (HY000): Unknown data type: 'chat'         MariaDB [db_databuku_sevita]> create table Distributor(                                                         -> id_distributor int primary key auto_increment,     -> nama_distributor varchar (20),                     -> no_tlp char (20),                                  -> alamat varchar (40)                                -> );                                             ERROR 1050 (42S01): Table 'Distributor' already existsMariaDB [db_databuku_sevita]> create table distributor(                                                         -> id_distributor int primary key auto_increment,     -> nama_distributor varchar (20),                     -> no_tlp char (20),                                  -> alamat varchar (40)                                -> );                                             Query OK, 0 rows affected (0.034 sec)
+
+MariaDB [db_databuku_sevita]> insert into distributor(id_distributor,nama_distributor,no_tlp,alamat) values (01,"anggun",08919602658,"mangkang");
+Query OK, 1 row affected (0.066 sec)
+
+MariaDB [db_databuku_sevita]> insert into distributor(id_distributor,nama_distributor,no_tlp,alamat) values
+(02,"alifia",08919266190,"mangkang");
+Query OK, 1 row affected (0.004 sec)
+
+MariaDB [db_databuku_sevita]> select * from distributor;
++----------------+------------------+------------+----------+
+| id_distributor | nama_distributor | no_tlp     | alamat   |
++----------------+------------------+------------+----------+
+|              1 | anggun           | 8919602658 | mangkang |
+|              2 | alifia           | 8919266190 | mangkang |
++----------------+------------------+------------+----------+
+2 rows in set (0.011 sec)
+
+MariaDB [db_databuku_sevita]> create table prmbelian(
+    -> id_order int (15),
+    -> id_barang int (20),
+    -> id_pembeli int (15),
+    -> id_tanggal date,
+    -> PRIMARY KEY (id_order)
+    -> );
+Query OK, 0 rows affected (0.046 sec)
+
+MariaDB [db_databuku_sevita]> insert into pembelian(id_order,id_barang,id_pembeli,id_tanggal) values (001,91,21,"2023-02-3");
+ERROR 1146 (42S02): Table 'db_databuku_sevita.pembelian' doesn't exist
+MariaDB [db_databuku_sevita]> create table pembelian(                                       -> id_order int (15),
+   -> id_barang int (20),                                                                  -> id_pembeli int (15),
+  -> id_tanggal date,                                                                     -> PRIMARY KEY (id_order)
+ -> );
+Query OK, 0 rows affected (0.016 sec)
+
+MariaDB [db_databuku_sevita]> insert into pembelian(id_order,id_barang,id_pembeli,id_tanggal) values (001,91,21,"2023-02-3");
+Query OK, 1 row affected (0.006 sec)
+
+MariaDB [db_databuku_sevita]> insert into pembelian(id_order,id_barang,id_pembeli,id_tanggal) values (002,21,21,"2023-02-3");
+Query OK, 1 row affected (0.004 sec)
+
+MariaDB [db_databuku_sevita]> select * from pembelian;
++----------+-----------+------------+------------+
+| id_order | id_barang | id_pembeli | id_tanggal |
++----------+-----------+------------+------------+
+|        1 |        91 |         21 | 2023-02-03 |
+|        2 |        21 |         21 | 2023-02-03 |
++----------+-----------+------------+------------+
+2 rows in set (0.003 sec)
+
+MariaDB [db_databuku_sevita]> create table pelanggan(
+    -> id_pelanggan int (15),
+    -> nama_pembeli varchar (20),
+    -> no_telp int (15),
+    -> alamat varchar (20),
+    -> PRIMARY KEY (id_pelanggan)
+    -> );
+Query OK, 0 rows affected (0.017 sec)
+
+MariaDB [db_databuku_sevita]> insert into pelanggan(id_pelanggan,nama_pembeli,no_telp,alalamat) values (221,"sevita",08962810,"kaliwunggu");
+ERROR 1054 (42S22): Unknown column 'alalamat' in 'field list'
+MariaDB [db_databuku_sevita]> insert into pelanggan(id_pelanggan,nama_pembeli,no_telp,alamat) values (221,"sevita",08962810,"kaliwunggu");
+Query OK, 1 row affected (0.004 sec)
+
+MariaDB [db_databuku_sevita]> insert into pelanggan(id_pelanggan,nama_pembeli,no_telp,alamat) values (222,"sari",08962810,"kaliwunggu");
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [db_databuku_sevita]> select * from pelanggan;
++--------------+--------------+---------+------------+
+| id_pelanggan | nama_pembeli | no_telp | alamat     |
++--------------+--------------+---------+------------+
+|          221 | sevita       | 8962810 | kaliwunggu |
+|          222 | sari         | 8962810 | kaliwunggu |
++--------------+--------------+---------+------------+
+2 rows in set (0.003 sec)
+
+MariaDB [db_databuku_sevita]> create table penjualan(
+    -> id_order int (15),
+    -> id_barang int (15),
+    -> jumlah int (20),
+    -> harga int (25),
+    -> PRIMARY KEY (id_order)
+    -> );
+Query OK, 0 rows affected (0.019 sec)
+
+MariaDB [db_databuku_sevita]> insert into penjualan(id_order,id_barang,jumlah,harga) valERROR 1136 (21S01): Column count doesn't match value count at row 1
+MariaDB [db_databuku_sevita]> insert into penjualan(id_order,id_barang,jumlah,harga) values (21,3398,18,50.000,00);
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+MariaDB [db_databuku_sevita]> insert into penjualan values('125', '1776', '5', '25.000');
+Query OK, 1 row affected (0.007 sec)
+
+MariaDB [db_databuku_sevita]> insert into penjualan values('128', '1766', '15', '50.000');
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [db_databuku_sevita]> select * from penjualan;
++----------+-----------+--------+-------+
+| id_order | id_barang | jumlah | harga |
++----------+-----------+--------+-------+
+|      125 |      1776 |      5 |    25 |
+|      128 |      1766 |     15 |    50 |
++----------+-----------+--------+-------+
+2 rows in set (0.003 sec)
+
+MariaDB [db_databuku_sevita]> update penjualan set harga ='25.000' where id_order='125';
+Query OK, 0 rows affected (0.017 sec)
+Rows matched: 1  Changed: 0  Warnings: 0
+
+MariaDB [db_databuku_sevita]> update penjualan set harga ='50.000' where id_order='128';
+Query OK, 0 rows affected (0.001 sec)
+Rows matched: 1  Changed: 0  Warnings: 0
+
+MariaDB [db_databuku_sevita]> select * from penjualan;
++----------+-----------+--------+-------+
+| id_order | id_barang | jumlah | harga |
++----------+-----------+--------+-------+
+|      125 |      1776 |      5 |    25 |
+|      128 |      1766 |     15 |    50 |
++----------+-----------+--------+-------+
+2 rows in set (0.001 sec)
+
+MariaDB [db_databuku_sevita]> select * from distributor;
++----------------+------------------+------------+----------+
+| id_distributor | nama_distributor | no_tlp     | alamat   |
++----------------+------------------+------------+----------+
+|              1 | anggun           | 8919602658 | mangkang |
+|              2 | alifia           | 8919266190 | mangkang |
++----------------+------------------+------------+----------+
+2 rows in set (0.002 sec)
+
+MariaDB [db_databuku_sevita]> select * from pembelian;
++----------+-----------+------------+------------+
+| id_order | id_barang | id_pembeli | id_tanggal |
++----------+-----------+------------+------------+
+|        1 |        91 |         21 | 2023-02-03 |
+|        2 |        21 |         21 | 2023-02-03 |
++----------+-----------+------------+------------+
+2 rows in set (0.002 sec)
+
+MariaDB [db_databuku_sevita]> select * from pelanggan;
++--------------+--------------+---------+------------+
+| id_pelanggan | nama_pembeli | no_telp | alamat     |
++--------------+--------------+---------+------------+
+|          221 | sevita       | 8962810 | kaliwunggu |
+|          222 | sari         | 8962810 | kaliwunggu |
++--------------+--------------+---------+------------+
+2 rows in set (0.001 sec)
+
+MariaDB [db_databuku_sevita]> select * from penjualan;
++----------+-----------+--------+-------+
+| id_order | id_barang | jumlah | harga |
++----------+-----------+--------+-------+
+|      125 |      1776 |      5 |    25 |
+|      128 |      1766 |     15 |    50 |
++----------+-----------+--------+-------+
+2 rows in set (0.001 sec)
+
+MariaDB [db_databuku_sevita]>
